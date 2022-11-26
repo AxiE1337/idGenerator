@@ -12,6 +12,12 @@ let onlyNums: boolean = false
 let hyphen: boolean = false
 let quantity: number = 1
 
+ids.innerHTML = `<h1 id='generatedId'>${generateId(
+  length,
+  hyphen,
+  onlyNums
+)}</h1>`
+
 quantityInput.addEventListener('input', (e) => {
   const target = e.target as HTMLInputElement
   const value = target.value
@@ -40,9 +46,8 @@ checkHyphen.addEventListener('change', (e) => {
 })
 
 button.addEventListener('click', () => {
-  let generatedIds: string = ''
-
   if (quantity !== 1 && quantity < 11) {
+    let generatedIds: string = ''
     for (let i = 0; i < quantity; i++) {
       generatedIds += `<h1 id='generatedId'>${generateId(
         length,
