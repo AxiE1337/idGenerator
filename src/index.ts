@@ -5,8 +5,7 @@ const slider = document.querySelector('#slider') as HTMLInputElement
 const quantityInput = document.querySelector('#quantity') as HTMLInputElement
 const checkNumbers = document.querySelector('#onlyNums') as HTMLInputElement
 const checkHyphen = document.querySelector('#hyphen') as HTMLInputElement
-const btnCopy = document.querySelector('#btnCopy') as HTMLButtonElement
-const title = document.querySelector('.title') as HTMLHeadingElement
+const ids = document.querySelector('#ids') as HTMLDivElement
 
 let length: number = 5
 let onlyNums: boolean = false
@@ -41,27 +40,36 @@ checkHyphen.addEventListener('change', (e) => {
 })
 
 button.addEventListener('click', () => {
-  let text: string = ''
+  let generatedIds: string = ''
+
   if (quantity !== 1 && quantity < 11) {
     for (let i = 0; i < quantity; i++) {
-      text += generateId(length, hyphen, onlyNums) + '</br>'
+      generatedIds += `<h1 id='generatedId'>${generateId(
+        length,
+        hyphen,
+        onlyNums
+      )}</h1>`
     }
-    return (title.innerHTML = text)
+    return (ids.innerHTML = generatedIds)
   }
-  title.innerHTML = generateId(length, hyphen, onlyNums)
+  ids.innerHTML = `<h1 id='generatedId'>${generateId(
+    length,
+    hyphen,
+    onlyNums
+  )}</h1>`
 })
 
-btnCopy.addEventListener('click', () => {
-  navigator.clipboard.writeText(title.innerText)
+ids.addEventListener('click', (e) => {
+  const generatedId = e.target as HTMLHeadingElement
+  navigator.clipboard.writeText(generatedId.innerText)
   const alert = document.createElement('p') as HTMLParagraphElement
   alert.innerText = 'copied'
   alert.classList.add('alert')
-  title.appendChild(alert)
+  generatedId.appendChild(alert)
+  generatedId.classList.add('clipboard')
 
   setTimeout(() => {
-    title.removeChild(alert)
-    return () => {
-      console.log('3424')
-    }
+    generatedId.removeChild(alert)
+    generatedId.classList.remove('clipboard')
   }, 300)
 })

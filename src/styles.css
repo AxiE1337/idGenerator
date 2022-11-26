@@ -7,9 +7,12 @@
   background-color: #064663;
   position: fixed;
   font-size: 1rem;
-  margin-top: 5px;
+  margin-top: 1px;
   padding: 0.5rem;
   border-radius: 5px;
+}
+.clipboard {
+  color: rgba(255, 255, 255, 0.527);
 }
 .btnCopy {
   color: #fff;
@@ -31,13 +34,19 @@
   font-family: 'Inter', sans-serif;
   background-color: #04293a;
   color: white;
+  z-index: 20;
 }
-.title {
-  background-color: rgba(255, 255, 255, 0);
-  border: 1px solid white;
+.ids {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
   padding: 1rem;
   margin-bottom: 0.3rem;
   border-radius: 1px;
+  border: 1px solid white;
+  width: 100%;
+  cursor: pointer;
 }
 .main-content {
   display: flex;
@@ -86,9 +95,9 @@
 }
 
 @media screen and (max-width: 768px) {
-  .title {
+  .ids {
     margin-top: 1rem;
-    font-size: 1rem;
+    font-size: 0.6rem;
     width: 90%;
     height: 100%;
   }
